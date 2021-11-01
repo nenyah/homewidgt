@@ -6,8 +6,8 @@ A household goods management tool
 
 #### Core functions
 
-- [] Add item (optional effective date)
-- [] Remind if the item is close to the expiration date
+- [ ] Add item (optional effective date)
+- [ ] Remind if the item is close to the expiration date
 
 #### Data structure
 

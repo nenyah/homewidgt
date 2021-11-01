@@ -24,21 +24,27 @@ class APIRender(JSONRenderer):
     def render(self, data, accepted_media_type=None, renderer_context=None):
         if renderer_context:
             if isinstance(data, dict):
+                result = True
                 msg = data.pop('msg', 'success')
                 code = data.pop('code', status.HTTP_200_OK)
             else:
+                result = True
                 msg = 'success'
                 code = status.HTTP_200_OK
+                if data is None:
+                    data = []
 
             # 重新构建返回的JSON字典
             for key in data:
                 # 判断是否有自定义的异常的字段
                 if key == 'message':
+                    result = False
                     msg = data[key]
-                    data = ''
+                    data = []
                     code = 0
 
             ret = {
+                'result': result,
                 'msg': msg,
                 'code': code,
                 'data': data,

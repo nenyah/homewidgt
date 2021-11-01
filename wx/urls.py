@@ -15,6 +15,6 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from .views import *
 
 urlpatterns = format_suffix_patterns([
-    path('wx_login/', WxLoginView.as_view(), name='wx_login'),
-    # 其他接口
+    path('login/', WxLoginView.as_view(), name='wx_login'),
+    path('login-test/', WxLoginFakeView.as_view(), name='wx_login_test'),
 ])
