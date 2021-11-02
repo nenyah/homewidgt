@@ -17,6 +17,6 @@ from .views import RecordsViewModel
 router = DefaultRouter()
 router.register('records', RecordsViewModel)
 urlpatterns = [
-    path('', include(router.urls)),
+    path('goods/', include(router.urls)),
     # 其他接口
 ]

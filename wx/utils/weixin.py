@@ -4,6 +4,7 @@ import requests
 
 from homewidgt import settings
 
+
 class WEIXINAPI:
     def __init__(self, appid=settings.WX_APP_ID, app_secret=settings.WX_APP_SECRET):
         self.appid = appid

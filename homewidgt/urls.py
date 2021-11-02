@@ -29,14 +29,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # DRF 提供的一系列身份认证的接口，用于在页面中认证身份，详情查阅DRF文档
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api/wx/', include('wx.urls')),
-    path('api/goods/', include('goods.urls')),
-    # 获取Token的接口
+    # JWT
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    # 刷新Token有效期的接口
-    path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    # 验证Token的有效性
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    # 应用
+    path('api/', include('wx.urls')),
+    path('api/', include('goods.urls')),
+    # 文档
     path('docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
 ]
 if settings.DEBUG:

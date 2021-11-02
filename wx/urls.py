@@ -9,12 +9,17 @@
 @License :   (C)Copyright 2021-2022, Xirui-NLPR-CASIA
 @Desc    :   None
 """
-from django.urls import path
-from rest_framework.urlpatterns import format_suffix_patterns
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
 from .views import *
 
-urlpatterns = format_suffix_patterns([
-    path('login/', WxLoginView.as_view(), name='wx_login'),
-    path('login-test/', WxLoginFakeView.as_view(), name='wx_login_test'),
-])
+# 创建路由器并注册我们的视图。
+router = DefaultRouter()
+router.register(r'users', UserViewSet, basename='users')
+router.register(r'codes', WxLoginViewSet, basename="codes")
+router.register(r'fake-login', FakeLoginViewSet, basename="fake-login")
+
+urlpatterns = [
+    path('auth/', include(router.urls)),
+]
